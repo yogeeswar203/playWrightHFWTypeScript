@@ -1,39 +1,55 @@
 {
   "default": {
     "formatOptions": {
-      "snippetInterface": "async-await"
+      "snippetInterface": "async-await",
+      "resultsDir": "allure-results"
     },
     "paths": [
       "src/test/features/**/*.feature"
     ],
     "require": [
-      "src/test/steps/**/*.ts"
+      "src/test/steps/**/*.ts",
+      "src/hooks/hooks.ts"
     ],
     "requireModule": [
       "ts-node/register"
+    ],
+    "format":[
+      "progress",
+      "allure-cucumberjs/reporter"
+
     ],
     "publishQuiet": true,
     "dryRun": false
   },
   "orangehrm": {
     "formatOptions": {
-      "snippetInterface": "async-await"
+      "snippetInterface": "async-await",
+      "resultsDir": "allure-results"
     },
     "paths": [
       "src/test/features/OrangeHRMFeatures/**/*.feature"
     ],
     "require": [
-      "src/test/steps/OrangeHrmsteps/**/*.ts"
+      "src/test/steps/OrangeHrmsteps/**/*.ts",
+      "src/hooks/hooks.ts"
     ],
     "requireModule": [
       "ts-node/register"
+    ],
+     "format":[
+  
+      "progress",
+      "allure-cucumberjs/reporter"
+
     ],
     "publishQuiet": true,
     "dryRun": true
   },
   "demoapp": {
     "formatOptions": {
-      "snippetInterface": "async-await"
+      "snippetInterface": "async-await",
+      "resultsDir": "allure-results"
     },
     "paths": [
       "src/test/features/demoapplicationFeatureFiles/**/*.feature"
@@ -44,7 +60,14 @@
     "requireModule": [
       "ts-node/register"
     ],
+    "format":[
+    
+      "progress",
+      "allure-cucumberjs/reporter"
+
+    ],
     "publishQuiet": true,
     "dryRun": true
   }
+
 }

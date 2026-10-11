@@ -4,7 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "cucumber-js test"
+    "test": "cucumber-js test ",
+    "report": "npx ts-node src/helper/report.js",
+    "pretest": "rimraf allure-results allure-report",
+    "allure:generate": "npx allure generate ./allure-results --clean -o allure-report",
+    "allure:open": "npx allure open ./allure-report"
+    
   },
   "keywords": [],
   "type": "commonjs",
@@ -12,6 +17,10 @@
     "@cucumber/cucumber": "^13.3.0",
     "@playwright/test": "^1.63.0",
     "@types/node": "^26.6.4",
+    "allure-commandline": "^2.46.1",
+    "allure-cucumberjs": "^3.13.0",
+    "multiple-cucumber-html-reporter": "^4.4.2",
+    "rimraf": "^6.1.3",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.3"
   }

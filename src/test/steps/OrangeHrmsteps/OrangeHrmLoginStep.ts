@@ -1,26 +1,32 @@
 import {Given, Then} from "@cucumber/cucumber";
+import {test,expect} from "@playwright/test";
+import { pageFixture as pf } from "../../../hooks/pageFixers";
+import {OrgLoginPagePO} from "../../../PageObjects/OrangeHrmPO/orgLoginPagePO";
+
+let orgLogin:OrgLoginPagePO;
 
 Given('User is able to navigate to login paege', async function () {
-  // Write code here that turns the phrase above into concrete actions
-  console.log("This is 1st method for the Orange HRM Login");
+    orgLogin = new OrgLoginPagePO(pf.page);
+    await orgLogin.navigateToLoginPage();
+    console.log("This is 1st method for the Orange HRM Login");
 });
 
-Given('User enter the user name as {string}', async function (string) {
-  // Write code here that turns the phrase above into concrete actions
-  return 'pending';
+Given('User enter the user name as {string}', async function (username:string) {
+    await orgLogin.enter_username(username);
+  
 });
 
-Given('user enter the password as {string}', async function (string) {
-  // Write code here that turns the phrase above into concrete actions
-  return 'pending';
+Given('user enter the password as {string}', async function (pwd:string) {
+ 
+  await orgLogin.enter_password(pwd);
 });
 
 Given('user click on the login button', async function () {
-  // Write code here that turns the phrase above into concrete actions
-  return 'pending';
+ 
+ await orgLogin.clickOnLoginbtn();
 });
 
 Then('user is able to see the admin home Page', async function () {
-  // Write code here that turns the phrase above into concrete actions
-  return 'pending';
+  
+  console.log("User is able to login successfully to the Orange HRM admin page")
 });

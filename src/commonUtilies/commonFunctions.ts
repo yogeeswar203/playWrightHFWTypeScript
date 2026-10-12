@@ -57,4 +57,22 @@ export class commonFunction{
         const text = (await locator.innerText()).trim();
         return text;
     }
+
+    async selectValueFromDropdown(locator:Locator,optionLabel:string)
+    {
+        await locator.selectOption({label:optionLabel});
+        //await this.networkIdle();
+    }
+
+    async staticWait(timeOut:number)
+    {
+        pf.page.waitForTimeout(timeOut);
+    };
+
+    async getNoOfElements(locator:Locator)
+    {
+        const no_elements = (await locator.all()).length;
+        return no_elements;
+    }
+
 }

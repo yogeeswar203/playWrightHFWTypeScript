@@ -5,42 +5,25 @@ import {test, Page, Locator} from "@playwright/test";
 let cuf:commonFunction;
 
 
-const orgLoginURL = "https://www.google.com";
+const url = "https://sauce-demo.myshopify.com/";
 
 export class dempapplogin{
     private readonly page;
-    private readonly username_ip;
-    private readonly password_ip;
-    private readonly login_btn;
+
    
 
     constructor(page:Page)
     {
         this.page= pf.page;
-        this.username_ip = pf.page.locator("input[name='username']");
-        this.password_ip = pf.page.locator("input[name='password']");
-        this.login_btn = pf.page.locator("button[type='submit']");
+       
         
     };
 
 
-    async navigateToLoginPage(){
+    async navigateToDemoPage(){
         cuf = new commonFunction(pf.page);
-        await cuf.navigatingToURL(orgLoginURL);
-    }
+        await cuf.navigatingToURL(url);
+    };
 
-    async enter_username(username:string){
-        await cuf.enterText(this.username_ip, username)
-    }
-
-    async enter_password(pwd:string)
-    {
-        await cuf.enterText(this.password_ip,pwd);
-    }
-
-    async clickOnLoginbtn()
-    {
-        await cuf.userClick(this.login_btn);
-    }
-
+    
 }

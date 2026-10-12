@@ -4,9 +4,7 @@
       "snippetInterface": "async-await",
       "resultsDir": "allure-results"
     },
-    "paths": [
-      "src/test/features/**/*.feature"
-    ],
+    
     "require": [
       "src/test/steps/**/*.ts",
       "src/hooks/hooks.ts"
@@ -52,10 +50,10 @@
       "resultsDir": "allure-results"
     },
     "paths": [
-      "src/test/features/demoapplicationFeatureFiles/**/*.feature"
+      "src/test/features/demoapp/**/*.feature"
     ],
     "require": [
-      "src/test/steps/demoapplicationSteps/**/*.ts"
+      "src/test/steps/demoapp/**/*.ts"
     ],
     "requireModule": [
       "ts-node/register"
@@ -67,7 +65,7 @@
 
     ],
     "publishQuiet": true,
-    "dryRun": true
+    "dryRun": false
   }
 
 }

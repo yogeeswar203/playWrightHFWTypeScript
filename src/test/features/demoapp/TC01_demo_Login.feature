@@ -1,9 +1,7 @@
-Feature: Orange HRM login Page
+Feature: This Demo App for the next feature file
     Background:
-        Given User is able to navigate to login page
     
     Scenario: Orange HRM login functionality
-        And User enter the user name as "admin"
-        And user enter the password as "admin123"
-        And user click on the login button
+        Given User is able to navigate to demo app
+
         

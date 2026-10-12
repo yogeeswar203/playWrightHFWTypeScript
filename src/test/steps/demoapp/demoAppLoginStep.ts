@@ -3,30 +3,12 @@ import {test,expect} from "@playwright/test";
 import { pageFixture as pf } from "../../../hooks/pageFixers";
 import {dempapplogin} from "../../../PageObjects/demoapp/demoappLoginPagePO";
 
-let orgLogin:dempapplogin;
+let dorgLogin:dempapplogin;
 
-Given('User is able to navigate to login page', async function () {
-    orgLogin = new dempapplogin(pf.page);
-    await orgLogin.navigateToLoginPage();
-    console.log("This is 1st method for the Orange HRM Login");
+Given('User is able to navigate to demo app', async function () {
+    dorgLogin = new dempapplogin(pf.page);
+    await dorgLogin.navigateToDemoPage();
+    await pf.page.waitForTimeout(5000);
+    console.log("This is demo app execution");
 });
 
-Given('User enter the user name as {string}', async function (username:string) {
-    await orgLogin.enter_username(username);
-  
-});
-
-Given('user enter the password as {string}', async function (pwd:string) {
- 
-  await orgLogin.enter_password(pwd);
-});
-
-Given('user click on the login button', async function () {
- 
- await orgLogin.clickOnLoginbtn();
-});
-
-Then('user is able to see the admin home Page', async function () {
-  
-  console.log("User is able to login successfully to the Orange HRM admin page")
-});

@@ -33,18 +33,7 @@ export class commonFunction{
         await this.networkIdle();
     };
 
-    async userClick(locator:Locator, forceClick=false)
-    {
-        // This will make playwright will automatically wait for enabled and visible
-        await locator.click({force:forceClick});
-        await this.networkIdle();
-        // try{
-        //     await this.networkIdle();
-        // }catch
-        // {
-        //     console.warn('Network wait skipped: Page likely navigated away after click.');
-        // }
-    };
+
 
     async user_click(locator:Locator)
     {

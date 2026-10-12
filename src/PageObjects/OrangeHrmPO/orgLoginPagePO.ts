@@ -40,7 +40,7 @@ export class OrgLoginPagePO{
 
     async clickOnLoginbtn()
     {
-        await cuf.userClick(this.login_btn);
+        await cuf.user_click(this.login_btn);
     }
 
 }

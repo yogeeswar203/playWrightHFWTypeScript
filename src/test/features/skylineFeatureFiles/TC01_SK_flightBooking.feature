@@ -16,6 +16,7 @@ Feature: Flight booking on skyline application positive flow
         And Select Cabin as "Business"
         Then Click on search flight button
         Then Validate the flight counts are matching
+        And select fastest flight and fare
         
 
 

@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "cucumber-js test ",
+    "test": "cucumber-js",
     "report": "npx ts-node src/helper/report.js",
     "pretest": "rimraf allure-results allure-report",
     "allure:generate": "npx allure generate ./allure-results --clean -o allure-report",

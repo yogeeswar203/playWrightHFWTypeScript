@@ -1,0 +1,15 @@
+Below are the git commands
+To push the code to branch
+framework-updates --> this is the branch name
+
+git checkout -b framework-updates
+git push -u origin framework-updates
+
+git add .
+git commit -m "message"
+git push
+
+-----------------------
+Demo web sites for testing
+
+https://www.practiceqaautomation.com/apps/bank

@@ -1,10 +1,12 @@
 import {pageFixture as pf} from "../hooks/pageFixers";
 import {test, expect, Page, Locator} from "@playwright/test";
 import {setDefaultTimeout} from "@cucumber/cucumber";
+import * as fs from "fs";
 
 
 //Setting the default time out to 60 sec
 setDefaultTimeout(60*1000);
+
 
 export class commonFunction{
     private readonly page:Page;
@@ -12,13 +14,13 @@ export class commonFunction{
     // initiating the constructor
     constructor(page:Page){
         this.page = pf.page;
-    }
+    }; 
 
     // setting the network ideal reusable method
 
     async networkIdle(){
         await pf.page.waitForLoadState("networkidle");
-    }
+    };
 
     // Navigating any given URL
     async navigatingToURL(url:string) {
@@ -39,19 +41,19 @@ export class commonFunction{
     {
         await locator.click();
         await this.networkIdle();
-    }
+    };
 
     // getting the text from the browser
     async getText(locator:Locator){
         const text = (await locator.innerText()).trim();
         return text;
-    }
+    };
 
     async selectValueFromDropdown(locator:Locator,optionLabel:string)
     {
         await locator.selectOption({label:optionLabel});
         //await this.networkIdle();
-    }
+    };
 
     async staticWait(timeOut:number)
     {
@@ -62,6 +64,20 @@ export class commonFunction{
     {
         const no_elements = (await locator.all()).length;
         return no_elements;
+    };
+
+    async selectValuefromdrpIndex(locator:Locator, indexval:number)
+    {
+        await locator.selectOption({index:indexval});
+        this.networkIdle();
+
+    }
+
+    async readDataFromJson(filePath:string, passangerno:string){
+        const rawData = JSON.parse(fs.readFileSync(filePath,'utf-8'));
+        const fieldData = rawData[passangerno];
+        return fieldData;
+
     }
 
 }

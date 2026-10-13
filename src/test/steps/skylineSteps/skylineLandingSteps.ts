@@ -4,10 +4,12 @@ import { pageFixture as pf } from "../../../hooks/pageFixers";
 import {dempapplogin} from "../../../PageObjects/skylinesPo/skylineHomePage_pos";
 
 import {skSearchPagePO} from "../../../PageObjects/skylinesPo/skylineSearchPage_pos"
+import { sklinePaymentPO } from "../../../PageObjects/skylinesPo/skylinePaymentPage_pos";
 
 
 let skylineHomepage:dempapplogin;
 let skylineSearchPage:skSearchPagePO;
+let sklinePaymentPage:sklinePaymentPO
 
 Given('User is able to navigate to skyline flight search page', async function () {
         skylineHomepage = new dempapplogin(pf.page);
@@ -47,6 +49,25 @@ Then('select fastest flight and fare', async function(){
         skylineSearchPage = new skSearchPagePO(pf.page);
         await skylineSearchPage.selectFastest();
         await skylineSearchPage.clickOnBasicPrice();
+});
+
+Then('fill the traveller details', async function(){
+        //await skylineSearchPage.fillTravellerDetails("test","test2","data@tes.com","879289292");
+        await skylineSearchPage.getPassengerData();
+});
+
+Then('Select seat for passenger and clikon continue button', async function(){
+        await skylineSearchPage.selectSeat();
+});
+
+Then('Fill the payment details and Pay', async function(){
+        sklinePaymentPage = new sklinePaymentPO(pf.page);
+        await sklinePaymentPage.enterCardDetailsAndPay();
 })
+
+Then('Validate the booking pnr is generated',async function(){
+        sklinePaymentPage.bookingStatus();
+});
+
 
 

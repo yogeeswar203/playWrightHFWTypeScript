@@ -17,6 +17,10 @@ Feature: Flight booking on skyline application positive flow
         Then Click on search flight button
         Then Validate the flight counts are matching
         And select fastest flight and fare
+        And fill the traveller details
+        And Select seat for passenger and clikon continue button
+        Then Fill the payment details and Pay
+        Then Validate the booking pnr is generated
         
 
 

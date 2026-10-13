@@ -49,6 +49,13 @@ export class commonFunction{
         return text;
     };
 
+    // getting the attribute value
+
+    async getAttributeValue(locator:Locator, attributeName:string){
+        const attributeValue = locator.getAttribute(attributeName);
+        return attributeValue;
+    }
+
     async selectValueFromDropdown(locator:Locator,optionLabel:string)
     {
         await locator.selectOption({label:optionLabel});

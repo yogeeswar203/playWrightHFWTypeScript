@@ -12,6 +12,7 @@ export class skSearchPagePO{
     private readonly show_price_btn;
     private readonly basic_price_btn;
     private readonly flex_price_btn;
+    private readonly nonStop_chk;
 
 
     // Passenger data fill page
@@ -27,6 +28,7 @@ export class skSearchPagePO{
     private readonly continue_payment_btn;
     private readonly act_name_txt;
     private readonly bookedSeatNum_txt;
+    private readonly allFlightFares_loc;
 
 
     
@@ -34,6 +36,7 @@ export class skSearchPagePO{
 
     constructor(page:Page)
     {
+        // Search result page
         this.page= pf.page;
         this.cheapest_btn = pf.page.locator('button',{hasText:'cheapest'});
         this.fastest_btn = pf.page.locator('button',{hasText:'fastest'});
@@ -41,6 +44,10 @@ export class skSearchPagePO{
         this.show_price_btn = pf.page.locator("button[data-testid='select-flight']").first();
         this.basic_price_btn = pf.page.locator("button[data-testid='fare-basic']");
         this.flex_price_btn = pf.page.locator("button[data-testid='fare-flex']");
+        this.nonStop_chk = pf.page.locator("input[type='checkbox'] + span");
+        this.allFlightFares_loc = pf.page.locator("p[data-testid='flight-price']");
+
+
         
         // Passenger data fill page locators
         this.title_drp = pf.page.locator("select[id='pax-0-title']");
@@ -108,8 +115,24 @@ export class skSearchPagePO{
     await pf.page.waitForTimeout(2000);
     await cuf.user_click(this.continue_payment_btn);
     await pf.page.waitForTimeout(2000);
+   };
+
+   async selectValueFromSidePanel(value:string){
+    await this.nonStop_chk.filter({hasText:value}).click();
+    await pf.page.waitForTimeout(2000);
    }
-   
+
+   async getAllfares(){
+    let allflightFares = await this.allFlightFares_loc.all();
+    for(let fare of allflightFares)
+    {
+        console.log(await fare.innerText());
+    }
+
+    let arrayFare = await this.allFlightFares_loc.allInnerTexts();
+    console.log(arrayFare);
+
+   }
 
     
 }

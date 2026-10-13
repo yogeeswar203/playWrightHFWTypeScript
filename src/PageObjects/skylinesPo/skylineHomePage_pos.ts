@@ -20,6 +20,7 @@ export class dempapplogin{
     private readonly searchFlight_btn;
     private readonly no_of_flights_loc;
     private readonly no_of_flightsExp_loc;
+    private readonly swap_btn;
    
 
     constructor(page:Page)
@@ -40,7 +41,9 @@ export class dempapplogin{
         this.searchFlight_btn = pf.page.locator("button[data-testid='search-flights']");
  
         this.no_of_flights_loc = pf.page.locator("ul[data-testid='flight-list']>li");
-        this.no_of_flightsExp_loc =pf.page.locator("p[data-testid='flight-count']")
+        this.no_of_flightsExp_loc =pf.page.locator("p[data-testid='flight-count']");
+
+        this.swap_btn = pf.page.locator("button[aria-label='Swap cities']");
 
         
     };
@@ -88,9 +91,26 @@ export class dempapplogin{
         //console.log(no_ofFlights_act[0]);
         expect(noOfFlightExp).toBe(result);
         console.log(`The Acutal flight count is ${result} and expected flight count is ${noOfFlightExp}`);
-        
+       
+    };
 
-        
+    async getFromToCityValue(){
+        const from_city = await cuf.getAttributeValue(this.from_btn,'value');
+        const to_city = await cuf.getAttributeValue(this.to_btn,'value');
+        console.log(`From City: ${from_city} and ${to_city}`);
+    }
+
+    async ValidateSwappedCities(){
+        const from_city = await cuf.getAttributeValue(this.from_btn,'value');
+        const to_city = await cuf.getAttributeValue(this.to_btn,'value');
+        console.log(`From City: ${from_city} and ${to_city}`);
+        await cuf.user_click(this.swap_btn);
+        const from_city_asp = await cuf.getAttributeValue(this.from_btn,'value');
+        const to_city_asp = await cuf.getAttributeValue(this.to_btn,'value');
+        console.log(`From City: ${from_city} and ${to_city}`);
+        expect(from_city).toBe(to_city_asp);
+        expect(to_city).toBe(from_city_asp);
+
     };
 
     

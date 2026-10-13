@@ -36,6 +36,9 @@ Then('Select Cabin as {string}', async function(label:string){
 
 Then('Click on search flight button', async function(){
         await skylineHomepage.clickOnFlighSearch();
+        await pf.page.waitForTimeout(2000);
+        skylineSearchPage = new skSearchPagePO(pf.page);
+        await skylineSearchPage.getAllfares();
         
         
 });

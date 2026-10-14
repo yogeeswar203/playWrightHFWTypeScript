@@ -87,4 +87,17 @@ export class commonFunction{
 
     }
 
+    async selectOptionFromDrp(locator:Locator, value:string)
+    {
+        const data = await locator.all();
+       for(let op of data)
+       {
+        if((await op.innerText()) === value)
+        {
+            await op.click();
+            break;
+        }
+       }
+    };
+
 }

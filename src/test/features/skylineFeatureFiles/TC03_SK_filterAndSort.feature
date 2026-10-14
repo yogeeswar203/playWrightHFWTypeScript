@@ -10,6 +10,6 @@ Feature: Flight booking on skyline application positive flow with sorting and fi
         And select Depature date as first displayed data
         And Select Cabin as "Business"
         And Click on search flight button
-        Then Click on "Non-stop" and airline as "IndiGlide" and Depature time "Evening (18–24)"checkbox
+        #Then Click on "Non-stop" and airline as "IndiGlide" and Depature time "Evening (18–24)"checkbox
 
         

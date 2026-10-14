@@ -123,14 +123,19 @@ export class skSearchPagePO{
    }
 
    async getAllfares(){
-    let allflightFares = await this.allFlightFares_loc.all();
-    for(let fare of allflightFares)
-    {
-        console.log(await fare.innerText());
-    }
+    // let allflightFares = await this.allFlightFares_loc.all();
+    // for(let fare of allflightFares)
+    // {
+    //     console.log(await fare.innerText());
+    // }
 
-    let arrayFare = await this.allFlightFares_loc.allInnerTexts();
-    console.log(arrayFare);
+    let defaultFares = await this.allFlightFares_loc.allInnerTexts();
+    let numFares = defaultFares.map(price=> parseFloat(price.replace(/[₹,]/g,'')));
+    //console.log("This is Default Fares",numFares);
+    let sortedFares = [...numFares].sort((num1,num2)=>num1-num2);
+    //console.log("This is sorted Fares",sortedFares);
+
+    expect(numFares).toEqual(sortedFares);
 
    }
 

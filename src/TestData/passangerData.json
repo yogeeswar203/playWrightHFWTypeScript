@@ -19,7 +19,8 @@
         "username":"adminUser",
         "password":"Admin@123",
         "role":"Admin",
-        "status":"Enabled"
+        "status":"Enabled",
+        "empName":"Test"
 
     }
 }

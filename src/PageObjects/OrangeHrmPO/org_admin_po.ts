@@ -2,6 +2,7 @@ import { expect, Page } from "@playwright/test";
 import { pageFixture as pf } from "../../hooks/pageFixers";
 import { commonFunction } from "../../commonUtilies/commonFunctions";
 let cuf:commonFunction
+let username;
 
 const JsonPath = "D:/PlayWright Projects/playwrightCucumber/playWrightHFWTypeScript/src/TestData/passangerData.json"
 
@@ -15,11 +16,13 @@ export class adminpo{
     private readonly adminPageSearchResult_loc;
     private readonly records_txt;
 
+
     // Add user in admin page
     private readonly admin_add;
     private readonly username_admin_txt;
-    //private readonly password;
-    //private readonly cnf_password;
+    private readonly emp_nameauto_drp;
+    private readonly save_btn;
+    private readonly system_user_txt;
 
 
     constructor(page:Page)
@@ -37,6 +40,9 @@ export class adminpo{
         // Add admin user page
         this.admin_add = pf.page.locator(".oxd-button").filter({hasText:'Add'});
         this.username_admin_txt = pf.page.locator(".oxd-input-group"); // it will locate all the fields 
+        this.emp_nameauto_drp = pf.page.locator("div[role='option']>span").first();
+        this.save_btn = pf.page.locator("[type='submit']");
+        this.system_user_txt = pf.page.locator("h5:has-text('System Users')");
 
 
 
@@ -93,6 +99,10 @@ export class adminpo{
 
     async addAdminUser(){
         await cuf.user_click(this.admin_add);
+        
+    }
+
+    async fillAdminNewUser(){
         const adminData = await cuf.readDataFromJson(JsonPath,"adminUser");
         await pf.page.waitForTimeout(2000);
         await this.useroleDrp(adminData.role);
@@ -102,17 +112,26 @@ export class adminpo{
         const username_loc = this.username_admin_txt.filter({hasText:'Username'}).locator('input');
         const password_loc = this.username_admin_txt.filter({hasText:/^Password$/}).locator('input');
         const cnf_password_loc = this.username_admin_txt.filter({hasText:/^Confirm Password$/}).locator('input');
+        const emp_name = this.username_admin_txt.filter({hasText:/^Employee Name$/}).locator('input');
 
-        await cuf.enterText(username_loc,adminData.username);
+        // Generating the random username
+        username = await cuf.generateRandomString(7);
+        console.log(username);
+        await cuf.enterText(username_loc, username);
         await pf.page.waitForTimeout(1000);
         await cuf.enterText(password_loc,adminData.password);
         await pf.page.waitForTimeout(1000);
         await cuf.enterText(cnf_password_loc,adminData.password);
+        await cuf.enterText(emp_name,adminData.empName);
+        await cuf.user_click(this.emp_nameauto_drp);
+        await pf.page.waitForTimeout(3000);
+        await cuf.user_click(this.save_btn);
+        await pf.page.waitForTimeout(4000);
+        await cuf.waitForElement(this.records_txt);
+        const data = await cuf.getText(this.records_txt);
+        console.log(data);
 
-        await pf.page.waitForTimeout(2000);
-        await this.useroleDrp(adminData.role);
-
-    }
+    };
 
     
 }

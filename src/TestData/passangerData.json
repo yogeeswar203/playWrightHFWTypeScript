@@ -13,5 +13,13 @@
         "expiryDate":"12/25",
         "cvv":"123"
 
+    },
+    "adminUser":
+    {   
+        "username":"adminUser",
+        "password":"Admin@123",
+        "role":"Admin",
+        "status":"Enabled"
+
     }
 }

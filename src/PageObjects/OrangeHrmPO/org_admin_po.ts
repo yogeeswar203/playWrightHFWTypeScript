@@ -23,6 +23,7 @@ export class adminpo{
     private readonly emp_nameauto_drp;
     private readonly save_btn;
     private readonly system_user_txt;
+    private readonly adminPageSearchResultUser_loc;
 
 
     constructor(page:Page)
@@ -35,6 +36,7 @@ export class adminpo{
         // a span:has-text('Admin')
         //this.adminPageSearchResult_loc = pf.page.locator(".oxd-table-body .oxd-table-row--with-border > .oxd-table-cell:nth-child(3)");
         this.adminPageSearchResult_loc = pf.page.locator(".oxd-table-cell:nth-child(3)");
+        this.adminPageSearchResultUser_loc = pf.page.locator(".oxd-table-cell:nth-child(2)");
         this.records_txt = pf.page.locator(".oxd-text--span").filter({hasText:'Records Found'});
 
         // Add admin user page
@@ -80,7 +82,7 @@ export class adminpo{
     async searchresults(role:string)
     {
         const data = await this.adminPageSearchResult_loc.allTextContents();
-        data.forEach(role=>{expect(role.trim()).toBe(role)});
+        data.forEach(role1=>{expect(role1.trim()).toBe(role)});
 
         let records_text= await cuf.getText(this.records_txt); // This will give the text of how many records found (32) Records Found
         const match = records_text.match(/\d+/); // Here it will check any digits are present \d+ ==> this is reg ex
@@ -101,6 +103,19 @@ export class adminpo{
         await cuf.user_click(this.admin_add);
         
     }
+
+    async searchData(searchdata:string){
+        const data = await this.adminPageSearchResultUser_loc.allInnerTexts();
+        for(let op of data)
+        {
+            if(op === searchdata)
+            {
+                console.log(`Record found ${op}`);
+                break;
+            }
+        }
+    }
+   
 
     async fillAdminNewUser(){
         const adminData = await cuf.readDataFromJson(JsonPath,"adminUser");
@@ -130,8 +145,12 @@ export class adminpo{
         await cuf.waitForElement(this.records_txt);
         const data = await cuf.getText(this.records_txt);
         console.log(data);
+        await this.searchData(username);
 
     };
+
+
+
 
     
 }

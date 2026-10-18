@@ -22,4 +22,5 @@ Then('Click on Search button', async function(){
 
 Then('Verify that all the users with {string} role and matching', async function(role:string){
     await adminsteps.searchresults(role);
+    
 });

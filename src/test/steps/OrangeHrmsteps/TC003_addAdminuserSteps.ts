@@ -16,6 +16,6 @@ Then('Fill all the required fields with valid data and click on save button', as
 });
 
 Then('Verify that the user is added successsfully in the user management', async function(){
-    
+    await adminsteps.newUserSearch();
 })
 

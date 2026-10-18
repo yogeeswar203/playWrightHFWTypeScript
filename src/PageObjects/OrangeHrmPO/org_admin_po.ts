@@ -24,6 +24,7 @@ export class adminpo{
     private readonly save_btn;
     private readonly system_user_txt;
     private readonly adminPageSearchResultUser_loc;
+    private  text;
 
 
     constructor(page:Page)
@@ -45,6 +46,7 @@ export class adminpo{
         this.emp_nameauto_drp = pf.page.locator("div[role='option']>span").first();
         this.save_btn = pf.page.locator("[type='submit']");
         this.system_user_txt = pf.page.locator("h5:has-text('System Users')");
+        this.text = "";
 
 
 
@@ -130,9 +132,10 @@ export class adminpo{
         const emp_name = this.username_admin_txt.filter({hasText:/^Employee Name$/}).locator('input');
 
         // Generating the random username
-        username = await cuf.generateRandomString(7);
-        console.log(username);
-        await cuf.enterText(username_loc, username);
+        //username = await cuf.generateRandomString(7);
+        this.text = await cuf.generateRandomString(7);
+        //console.log(username);
+        await cuf.enterText(username_loc, this.text);
         await pf.page.waitForTimeout(1000);
         await cuf.enterText(password_loc,adminData.password);
         await pf.page.waitForTimeout(1000);
@@ -145,12 +148,73 @@ export class adminpo{
         await cuf.waitForElement(this.records_txt);
         const data = await cuf.getText(this.records_txt);
         console.log(data);
-        await this.searchData(username);
+        await this.searchData(this.text);
 
     };
 
+    async newUserSearch(){
+        //const userrole_drp = this.systemUser_drps.filter({hasText:'User Role'}).locator('.oxd-select-wrapper');
+        console.log("This is entered text:",this.text);
+        const searchUsername = this.systemUser_drps.filter({hasText:'Username'}).locator('input');
+        await cuf.enterText(searchUsername,this.text);
+        await cuf.user_click(this.search_btn);
+        await pf.page.waitForTimeout(3000);
+        await this.searchData(this.text);
+    }
+
+    async clickOnSaveButton(){
+        await cuf.user_click(this.save_btn);
+        await pf.page.waitForTimeout(3000);
+    }
+    async errorValidation(){
+       
+        let dataValidation:string[] = [];
+        // Locators for all the required fields
+        const userrole_req_loc = this.username_admin_txt.filter({hasText:'User Role'}).locator('span');
+        const emp_req_loc = this.username_admin_txt.filter({hasText:'Employee Name'}).locator('span');
+        const status_req_loc = this.username_admin_txt.filter({hasText:'Status'}).locator('span');
+        const username_req_loc = this.username_admin_txt.filter({hasText:'Username'}).locator('span');
+        const pwd_req_loc = this.username_admin_txt.filter({hasText:/^Password$/}).locator('.oxd-input-field-error-message');
+        //const password_loc = this.username_admin_txt.filter({hasText:/^Password$/}).locator('input');
+        const cnfPwd_req_loc = this.username_admin_txt.filter({hasText:/^Confirm Password$/}).locator('.oxd-input-field-error-message');
+
+        const passwordError = this.username_admin_txt
+    .filter({ has: pf.page.locator('label', { hasText: /^Password$/ }) }) // Exact match to avoid "Confirm Password"
+    .locator('.oxd-input-field-error-message'); 
+    const cnfpasswordError = this.username_admin_txt
+    .filter({ has: pf.page.locator('label', { hasText: 'Confirm Password'}) }) // Exact match to avoid "Confirm Password"
+    .locator('.oxd-input-field-error-message');
+
+        const userRoleText = await cuf.getText(userrole_req_loc);
+        const empReqText = await cuf.getText(emp_req_loc);
+        const statusText = await cuf.getText(status_req_loc);
+        const usernameText = await cuf.getText(username_req_loc);
+        const pwdText = await cuf.getText(passwordError);
+        const cnfPwdText = await cuf.getText(cnfpasswordError);
+
+        
+        dataValidation.push(userRoleText,empReqText,statusText,usernameText, pwdText,cnfPwdText);
+        
+
+        for(let op of dataValidation)
+        {
+            if(op === 'Required')
+            {
+                //console.log('All the elements are showing as required')
+            }else if( op = 'Passwords do not match')
+            {
+                //console.log('Confirm validation also showing required')
+            }else
+            {
+                console.log("some of the fields are not matching ", dataValidation)
+            }
+        }
+        //console.log(dataValidation);
+        
+    }
 
 
+   
 
     
 }

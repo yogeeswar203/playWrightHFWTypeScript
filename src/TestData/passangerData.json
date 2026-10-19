@@ -16,11 +16,18 @@
     },
     "adminUser":
     {   
-        "username":"adminUser",
+        "username":"vDwLuZZ",
         "password":"Admin@123",
         "role":"Admin",
         "status":"Enabled",
         "empName":"Test"
+
+    },
+
+    "deletionUser":
+    {   
+        "username":"yellow1234"
+    
 
     }
 }

@@ -13,3 +13,17 @@ git push
 Demo web sites for testing
 
 https://www.practiceqaautomation.com/apps/bank
+
+
+Git notes 2
+# 1. Switch to your main branch
+git checkout main
+
+# 2. Ensure your local main is completely up to date
+git pull origin main
+
+# 3. Merge your framework-updates into main
+git merge framework-updates
+
+# 4. Push the newly merged main branch back up to GitHub
+git push origin main

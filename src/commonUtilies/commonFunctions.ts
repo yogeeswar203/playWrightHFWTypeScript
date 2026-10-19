@@ -120,6 +120,11 @@ export class commonFunction{
 
         return result;
 
+    };
+
+    async acceptAlert(){
+        pf.page.on('dialog',dailog=> dailog.accept());
+
     }
 
 }

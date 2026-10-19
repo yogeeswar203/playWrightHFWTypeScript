@@ -30,3 +30,15 @@ Then('user is able to see the admin home Page', async function () {
   
   console.log("User is able to login successfully to the Orange HRM admin page")
 });
+
+Then('Enter Username as {string} and Password as {string} and Click on login button', async function(username:string, password:string){
+  orgLogin = new OrgLoginPagePO(pf.page);
+  await orgLogin.navigateToLoginPage();
+  await orgLogin.enter_username(username);
+  await orgLogin.enter_password(password);
+  await orgLogin.clickOnLoginbtn();
+  await pf.page.waitForTimeout(2000);
+  await orgLogin.getDashboardText();
+
+
+});

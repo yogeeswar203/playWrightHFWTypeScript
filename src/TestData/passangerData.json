@@ -1,0 +1,26 @@
+{
+    "passanger1":
+    {   
+        "firstname":"Ramu",
+        "lastname":"KSN",
+        "email":"test@gmail.com",
+        "phone":"9122229023"
+
+    },
+    "cardDetails":
+    {   
+        "cardNumber":"1234567890123456",
+        "expiryDate":"12/25",
+        "cvv":"123"
+
+    },
+    "adminUser":
+    {   
+        "username":"adminUser",
+        "password":"Admin@123",
+        "role":"Admin",
+        "status":"Enabled",
+        "empName":"Test"
+
+    }
+}

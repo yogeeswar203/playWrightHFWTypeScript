@@ -1,6 +1,6 @@
 import {pageFixture as pf} from "../../hooks/pageFixers";
 import {commonFunction} from "../../commonUtilies/commonFunctions";
-import {test, Page, Locator} from "@playwright/test";
+import {test, Page, Locator, expect} from "@playwright/test";
 
 let cuf:commonFunction;
 
@@ -12,6 +12,10 @@ export class OrgLoginPagePO{
     private readonly username_ip;
     private readonly password_ip;
     private readonly login_btn;
+    private readonly dashboard_txt;
+    private readonly admin_lnk;
+    private readonly adpr_lnk;
+
    
 
     constructor(page:Page)
@@ -20,7 +24,10 @@ export class OrgLoginPagePO{
         this.username_ip = pf.page.locator("input[name='username']");
         this.password_ip = pf.page.locator("input[name='password']");
         this.login_btn = pf.page.locator("button[type='submit']");
-        
+        this.dashboard_txt = pf.page.locator("h6:has-text('Dashboard')");
+        this.admin_lnk = pf.page.locator("a span:has-text('Admin')");
+        this.adpr_lnk = pf.page.locator("a span");
+
     };
 
 
@@ -43,4 +50,18 @@ export class OrgLoginPagePO{
         await cuf.user_click(this.login_btn);
     }
 
+    async getDashboardText()
+    {
+        const dashboard_exp = await cuf.getText(this.dashboard_txt);
+        expect(dashboard_exp).toBe('Dashboard')
+        console.log('User is successfully loginto Application')
+        //await pf.page.waitForTimeout(4000);
+
+    }
+
+    async navigateToModule(moduleName:string)
+    {
+        const module_loc = this.admin_lnk.filter({hasText:moduleName});
+        await cuf.user_click(module_loc);
+    }
 }

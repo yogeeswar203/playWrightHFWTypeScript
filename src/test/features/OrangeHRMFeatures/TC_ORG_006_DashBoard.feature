@@ -3,6 +3,7 @@
 #3. Enter Password 'admin123'
 #4. Click 'Login'
 #5. Observe the left side menu#
+#6. Type 'Admin' in the side panel Search box
 
 Feature: Verify the left side menu options on the OrangeHRM dashboard
     Background: 
@@ -21,4 +22,5 @@ Feature: Verify the left side menu options on the OrangeHRM dashboard
     |Directory|
     |Maintenance|
     |Claim|
-    |Buzz|   
+    |Buzz|
+    Then User types 'Admin' in the side panel Search box and user is able to see the 'Admin' option in the left side menu

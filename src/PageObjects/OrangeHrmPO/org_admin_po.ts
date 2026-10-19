@@ -113,12 +113,15 @@ export class adminpo{
 
     async searchData(searchdata:string){
         const data = await this.adminPageSearchResultUser_loc.allInnerTexts();
+        console.log(data);
         for(let op of data)
         {
             if(op === searchdata)
             {
                 console.log(`Record found ${op}`);
                 break;
+            }else{
+                console.log(`Data not found ${op}`)
             }
         }
     }

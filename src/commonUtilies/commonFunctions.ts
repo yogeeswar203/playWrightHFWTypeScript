@@ -130,7 +130,8 @@ export class commonFunction{
 
     async getTextFromAllElements(locator:Locator){
         const data  = await locator.allInnerTexts();
-        return data;
+        const cleanData = data.map(text=>text.trim());
+        return cleanData;
     }
 
 }

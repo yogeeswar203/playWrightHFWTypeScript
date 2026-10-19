@@ -35,3 +35,23 @@ Press the Esc key (this ensures you are in "Command" mode rather than "Insert" m
 Type :wq (colon, w, q — which stands for "write" and "quit"). You will see this appear at the bottom-left of your terminal.
 
 Press Enter.
+
+  'Admin',       'PIM',
+  'Leave',       'Time',
+  'Recruitment', 'My Info',
+  'Performance', 'Dashboard',
+  'Directory',   'Maintenance',
+  'Claim',       'Buzz'
+
+  Admin
+  PIM
+  Leave
+  Time
+  Recruitment
+  My Info
+  Performance
+  Dashboard
+  Directory
+  Maintenance
+  Claim
+  Buzz

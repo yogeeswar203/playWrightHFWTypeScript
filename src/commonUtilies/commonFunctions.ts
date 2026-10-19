@@ -125,6 +125,12 @@ export class commonFunction{
     async acceptAlert(){
         pf.page.on('dialog',dailog=> dailog.accept());
 
+    };
+
+
+    async getTextFromAllElements(locator:Locator){
+        const data  = await locator.allInnerTexts();
+        return data;
     }
 
 }

@@ -25,6 +25,8 @@ export class adminpo{
     private readonly system_user_txt;
     private readonly adminPageSearchResultUser_loc;
     private  text;
+    private readonly deleteIcon;
+    private readonly deleteIcon2;
 
 
     constructor(page:Page)
@@ -47,6 +49,8 @@ export class adminpo{
         this.save_btn = pf.page.locator("[type='submit']");
         this.system_user_txt = pf.page.locator("h5:has-text('System Users')");
         this.text = "";
+        this.deleteIcon = pf.page.locator('.bi-trash');
+        this.deleteIcon2 = pf.page.locator('.orangehrm-modal-footer button i');
 
 
 
@@ -79,6 +83,7 @@ export class adminpo{
     {
         await cuf.user_click(this.search_btn);
         await pf.page.waitForTimeout(2000);
+        await pf.page.locator('.loading-spinner').waitFor({ state: 'detached' });
     };
 
     async searchresults(role:string)
@@ -164,7 +169,7 @@ export class adminpo{
 
     async clickOnSaveButton(){
         await cuf.user_click(this.save_btn);
-        await pf.page.waitForTimeout(3000);
+        await pf.page.locator('.loading-spinner').waitFor({ state: 'detached' });
     }
     async errorValidation(){
        
@@ -211,6 +216,30 @@ export class adminpo{
         }
         //console.log(dataValidation);
         
+    };
+
+    async searchUser(){
+        const searchUserName = await cuf.readDataFromJson(JsonPath,'deletionUser');
+        const searchUsername_loc = this.systemUser_drps.filter({hasText:'Username'}).locator('input');
+        await cuf.enterText(searchUsername_loc, searchUserName.username);
+        await this.clickOnSerch();
+        await pf.page.waitForTimeout(4000);
+        
+        
+
+
+        
+    };
+
+    async deleteIconClick(){
+        await cuf.user_click(this.deleteIcon);
+        await pf.page.waitForTimeout(4000);
+        
+    }
+
+    async deleteConfirmation(){
+        await cuf.user_click(this.deleteIcon2);
+        await pf.page.waitForTimeout(4000);
     }
 
 

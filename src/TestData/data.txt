@@ -27,3 +27,11 @@ git merge framework-updates
 
 # 4. Push the newly merged main branch back up to GitHub
 git push origin main
+
+if git stuck not moving to next in console the 
+Then follow below commands
+Press the Esc key (this ensures you are in "Command" mode rather than "Insert" mode).
+
+Type :wq (colon, w, q — which stands for "write" and "quit"). You will see this appear at the bottom-left of your terminal.
+
+Press Enter.

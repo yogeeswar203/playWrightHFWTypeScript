@@ -13,4 +13,4 @@ Feature: Verify the user dropdown options on the OrangeHRM dashboard
     |About|
     |Support|
     |Change Password|
-    |Logout|
+    |Logout| 

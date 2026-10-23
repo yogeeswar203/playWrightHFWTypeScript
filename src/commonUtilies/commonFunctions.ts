@@ -96,6 +96,12 @@ export class commonFunction{
         {
             await op.click();
             break;
+        }else if((await op.innerText()) === 'No Records Found')
+        {
+            console.log("No Records Found");
+            break; 
+        }else{
+            console.log((await op.innerText()));
         }
        }
     };
@@ -132,6 +138,8 @@ export class commonFunction{
         const data  = await locator.allInnerTexts();
         const cleanData = data.map(text=>text.trim());
         return cleanData;
-    }
+    };
+
+    
 
 }

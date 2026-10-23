@@ -63,5 +63,12 @@ export class OrgLoginPagePO{
     {
         const module_loc = this.admin_lnk.filter({hasText:moduleName});
         await cuf.user_click(module_loc);
-    }
+    };
+
+     // Dynamic locator for the left panel
+    dynamicLocforLeftpanel(leftPanelName:string){
+        return this.page.locator(`a span:has-text('${leftPanelName}')`)
+    };
+
+
 }

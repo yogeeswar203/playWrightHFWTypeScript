@@ -15,6 +15,7 @@ export class adminpo{
     private readonly search_btn;
     private readonly adminPageSearchResult_loc;
     private readonly records_txt;
+    private readonly cuf:commonFunction
 
 
     // Add user in admin page
@@ -40,7 +41,7 @@ export class adminpo{
         //this.adminPageSearchResult_loc = pf.page.locator(".oxd-table-body .oxd-table-row--with-border > .oxd-table-cell:nth-child(3)");
         this.adminPageSearchResult_loc = pf.page.locator(".oxd-table-cell:nth-child(3)");
         this.adminPageSearchResultUser_loc = pf.page.locator(".oxd-table-cell:nth-child(2)");
-        this.records_txt = pf.page.locator(".oxd-text--span").filter({hasText:'Records Found'});
+        this.records_txt = pf.page.locator(".oxd-text--span").filter({hasText:'Found'});
 
         // Add admin user page
         this.admin_add = pf.page.locator(".oxd-button").filter({hasText:'Add'});
@@ -52,6 +53,8 @@ export class adminpo{
         this.deleteIcon = pf.page.locator('.bi-trash');
         this.deleteIcon2 = pf.page.locator('.orangehrm-modal-footer button i');
 
+        // calling the another methods
+        this.cuf = new commonFunction(pf.page);
 
 
     }
@@ -81,7 +84,7 @@ export class adminpo{
 
     async clickOnSerch()
     {
-        await cuf.user_click(this.search_btn);
+        await this.cuf.user_click(this.search_btn);
         await pf.page.waitForTimeout(2000);
         await pf.page.locator('.loading-spinner').waitFor({ state: 'detached' });
     };
@@ -246,6 +249,16 @@ export class adminpo{
     }
 
 
+    async recordsFound(){
+        const record_txt = await this.cuf.getText(this.records_txt);
+        const record_txt2 = record_txt.match(/\d+/);
+        const no_ofrecords_final = record_txt2 ? parseInt(record_txt2[0],10):0;
+        console.log("Total records found:",no_ofrecords_final);
+
+        //const match = records_text.match(/\d+/); // Here it will check any digits are present \d+ ==> this is reg ex
+        //const no_ofexprecords = match ? parseInt(match[0],10):0; 
+        return no_ofrecords_final;
+    }
    
 
     

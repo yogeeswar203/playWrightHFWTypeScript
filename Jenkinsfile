@@ -59,13 +59,17 @@ pipeline {
       }
     }
     
-    stage('▶️ Run Playwright Tests') {
+  stage('▶️ Run Playwright Tests') {
       steps {
         script {
-          def suite = params.TEST_SUITE
-          def browserFlag = "--project=${params.BROWSER}"
-          def modeFlag = params.MODE == 'headed' ? '--headed' : ''
-          powershell "npm run ${suite} -- ${browserFlag} ${modeFlag}"
+          // 1. Pass the parameters as environment variables instead of CLI flags
+          env.BROWSER = "${params.BROWSER}"
+          env.HEADLESS = "${params.MODE == 'headless' ? 'true' : 'false'}"
+          
+          // 2. Run the npm script cleanly, using catchError so reports still generate if tests fail
+          catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') {
+              powershell "npm run ${params.TEST_SUITE}"
+          }
         }
       }
     }

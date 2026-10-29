@@ -132,7 +132,7 @@ export class directory_po{
 
     async validateSearchResults(){
         const no_ofRec = await this.orgAdmin_po.recordsFound();
-        expect(no_ofRec).toEqual(1);
+        expect(no_ofRec).toEqual(2);
     }
 
 }

@@ -1,7 +1,6 @@
 // Jenkinsfile.windows
 // Declarative Jenkins pipeline for Windows build agents
 
-
 /*
 Pipeline Stages:
 1. Checkout: Checks out the source code from the repository.
@@ -11,7 +10,6 @@ Pipeline Stages:
 5. Post Actions: Archives test reports, publishes JUnit and Allure reports, and cleans up allure-results on success.
 6. Email Notification: Sends an email notification with the build status and links to the reports.
 7. Parameters: Allows users to select the test suite, browser, and mode for the test execution.
-
 */
 
 pipeline {
@@ -59,7 +57,7 @@ pipeline {
       }
     }
     
-  stage('▶️ Run Playwright Tests') {
+    stage('▶️ Run Playwright Tests') {
       steps {
         script {
           // 1. Pass the parameters as environment variables instead of CLI flags
@@ -73,6 +71,8 @@ pipeline {
         }
       }
     }
+  } // <--- THIS is the closing brace that was missing!
+  
   post {
     always {
       archiveArtifacts artifacts: 'reports/**,custom-report/**,allure-results/**', allowEmptyArchive: true
@@ -95,26 +95,7 @@ pipeline {
         reportName: 'Custom Test Report'
       ])
       
-      // emailext(
-      //   subject: "Jenkins Build: ${env.JOB_NAME} #${env.BUILD_NUMBER} - ${currentBuild.currentResult}",
-      //   body: """
-      //       <h2>Playwright Test Execution Report</h2>
-      //       <p><b>Job:</b> ${env.JOB_NAME}</p>
-      //       <p><b>Build:</b> #${env.BUILD_NUMBER}</p>
-      //       <p><b>Status:</b> ${currentBuild.currentResult}</p>
-      //       <p><b>Test Suite:</b> ${params.TEST_SUITE}</p>
-      //       <p><b>Browser:</b> ${params.BROWSER}</p>
-      //       <p>
-      //         <a href="${env.BUILD_URL}">Open Jenkins Build</a> |
-      //         <a href="${env.BUILD_URL}Playwright_20HTML_20Report">Open Playwright HTML Report</a> |
-      //         <a href="${env.BUILD_URL}Custom_20Test_20Report">Open Custom Report</a>
-      //       </p>
-      //   """,
-      //   to: "RECIVER_EMAIL_ADDRESS", //Replace with the recipient's email address
-      //   from: "SENDER_EMAIL_ADDRESS", //Replace with the sender's email address
-      //   replyTo: "RECIVER_EMAIL_ADDRESS",  //Replace with the recipient's email address
-      //   mimeType: "text/html" //Defines the format of the email body. text/html allows HTML formatting (tables, colors, bold text, links, etc.).
-      // )
+      // emailext( ... )
     }
     success {
       script {

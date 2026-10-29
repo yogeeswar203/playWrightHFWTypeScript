@@ -73,7 +73,6 @@ pipeline {
         }
       }
     }
-    
   post {
     always {
       archiveArtifacts artifacts: 'reports/**,custom-report/**,allure-results/**', allowEmptyArchive: true

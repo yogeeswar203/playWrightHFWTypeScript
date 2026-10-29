@@ -10,7 +10,7 @@
 ##10. Enter a unique Username
 ##11. Enter Password 'Test@1234' and the same Confirm Password
 ##12. Click 'Save'   .
-
+@sanity @e2e
 Feature: Admin User Management
     Background: 
         When Enter Username as "Admin" and Password as "admin123" and Click on login button

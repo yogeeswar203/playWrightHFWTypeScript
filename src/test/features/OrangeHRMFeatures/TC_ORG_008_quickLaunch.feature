@@ -4,7 +4,7 @@
 #"4. Click 'Login'
 #"5. Click 'Assign Leave' in the Quick Launch widget"
 
-
+@sanity
 Feature: Verify the user dropdown options on the OrangeHRM dashboard
     Background: 
         When Enter Username as "Admin" and Password as "admin123" and Click on login button

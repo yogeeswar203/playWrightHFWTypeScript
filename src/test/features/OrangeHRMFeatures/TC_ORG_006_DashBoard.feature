@@ -5,6 +5,7 @@
 #5. Observe the left side menu#
 #6. Type 'Admin' in the side panel Search box
 
+@sanity @e2e
 Feature: Verify the left side menu options on the OrangeHRM dashboard
     Background: 
         When Enter Username as "Admin" and Password as "admin123" and Click on login button

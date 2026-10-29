@@ -3,6 +3,7 @@
 #3. Enter Password 'admin123'
 #4. Click 'Login'
 #5. Click the user name dropdown in the top right corner
+@sanity @e2e
 
 Feature: Verify the user dropdown options on the OrangeHRM dashboard
     Background: 

@@ -6,6 +6,7 @@
 #6. Select User Role 'Admin'
 #7. Click 'Search'
 
+@sanity @e2e
 Feature: Admin User Management
     Background: 
         When Enter Username as "Admin" and Password as "admin123" and Click on login button

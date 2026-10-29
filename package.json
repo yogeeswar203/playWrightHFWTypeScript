@@ -4,11 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "cucumber-js",
+    "test": "cucumber-js test/features/**/*.feature",
     "report": "npx ts-node src/helper/report.js",
     "pretest": "rimraf allure-results allure-report",
     "allure:generate": "npx allure generate ./allure-results --clean -o allure-report",
-    "allure:open": "npx allure open ./allure-report"
+    "allure:open": "npx allure open ./allure-report",
+    "test:sanity": "cucumber-js test/features/**/*.feature --tags \"@sanity\"",
+    "test:e2e": "cucumber-js test/features/**/*.feature --tags \"@e2e\""
     
   },
   "keywords": [],

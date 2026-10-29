@@ -7,7 +7,7 @@
 #7. Click 'Search'
 # This feature file steps are already covered in TC_ADM_001_UserManagement.feature file. So, this feature steps 
 #are not required to implement just we can change the variables and use the TC_ADM_001_UserManagement.feature realted steps file   .
-
+@sanity @e2e
 Feature: Admin User Management
     Background: 
         When Enter Username as "Admin" and Password as "admin123" and Click on login button

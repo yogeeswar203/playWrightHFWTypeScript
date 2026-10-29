@@ -20,12 +20,12 @@ pipeline {
         )
         choice(
             name: 'BROWSER',
-            choices: ['chromium', 'firefox', 'webkit'],
+            choices: ['chromium'],
             description: 'Select the browser for tests'
         )
         choice(
             name: 'MODE',
-            choices: ['headless', 'headed'],
+            choices: ['headed'],
             description: 'Run tests in headless or headed mode'
         )
     }

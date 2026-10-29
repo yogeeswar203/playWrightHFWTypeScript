@@ -5,7 +5,7 @@
 #5. Click 'Leave'
 #6. Click 'Search'
 
-
+@e2e
 Feature: Verify the search functionality in the Leave page of OrangeHRM
     Background: 
         When Enter Username as "Admin" and Password as "admin123" and Click on login button

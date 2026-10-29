@@ -5,6 +5,8 @@
 #5. Click 'Admin'
 #6. Click '+ Add'
 #7. Click 'Save' without entering data
+
+@sanity @e2e
 Feature: Admin User Management
     Background: 
         When Enter Username as "Admin" and Password as "admin123" and Click on login button

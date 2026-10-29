@@ -6,6 +6,8 @@
 #6. Search for the user created earlier
 #7. Click the Delete (trash) icon
 #8. Click 'Yes, Delete' in confirmation dialog
+
+@sanity @e2e
 Feature: Admin User Management
     Background: 
         When Enter Username as "Admin" and Password as "admin123" and Click on login button

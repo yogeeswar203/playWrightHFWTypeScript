@@ -87,7 +87,7 @@ export class directory_po{
         // if yoou want get the data from the JSON file below is the method
         let empSearchName = await this.cuf.readDataFromJson(JsonPath,"adminUser");
 
-        await this.cuf.enterText(empName,"aerfsegd" );
+        await this.cuf.enterText(empName,empSearchName);
 
         // if you want select the 1st search result
         //await this.cuf.user_click(this.emp_name_drp);

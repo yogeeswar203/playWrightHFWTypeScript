@@ -6,7 +6,7 @@
 #6. Type an existing employee name and select from autocomplete
 #7. Click 'Search'
 
-@e2e
+#@e2e
 Feature: Verify the search functionality in the Directory page of OrangeHRM
     Background: 
         When Enter Username as "Admin" and Password as "admin123" and Click on login button

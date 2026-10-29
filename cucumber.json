@@ -4,6 +4,9 @@
       "snippetInterface": "async-await",
       "resultsDir": "allure-results"
     },
+     "paths": [
+      "src/test/features/OrangeHRMFeatures/**/*.feature"
+    ],
     
     "require": [
       "src/test/steps/**/*.ts",

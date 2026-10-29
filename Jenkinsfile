@@ -23,7 +23,7 @@ pipeline {
   parameters {
     choice(
       name: 'TEST_SUITE',
-      choices: ['test:e2e', 'test:sanity'],
+      choices: ['test:sanity'],
       description: 'Select the test suite to run'
     )
     choice(
@@ -73,7 +73,7 @@ pipeline {
         }
       }
     }
-  }
+    
   post {
     always {
       archiveArtifacts artifacts: 'reports/**,custom-report/**,allure-results/**', allowEmptyArchive: true

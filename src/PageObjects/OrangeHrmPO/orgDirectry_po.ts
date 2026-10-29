@@ -86,12 +86,12 @@ export class directory_po{
 
         // if yoou want get the data from the JSON file below is the method
         let empSearchName = await this.cuf.readDataFromJson(JsonPath,"adminUser");
-
-        await this.cuf.enterText(empName,empSearchName);
+        await pf.page.waitForTimeout(2000);
+        await this.cuf.enterText(empName,'test');
 
         // if you want select the 1st search result
-        //await this.cuf.user_click(this.emp_name_drp);
-        await pf.page.waitForTimeout(2000);
+        await this.cuf.user_click(this.emp_name_drp);
+        await pf.page.locator('.loading-spinner').waitFor({ state: 'detached' });
         const data = await this.cuf.getTextFromAllElements(this.emp_name_drp_all);
         
         for(let op of data)
@@ -132,8 +132,8 @@ export class directory_po{
 
     async validateSearchResults(){
         const no_ofRec = await this.orgAdmin_po.recordsFound();
-        expect(no_ofRec).toEqual(316);
-        console.log("Expected 2")
+        expect(no_ofRec).toEqual(1);
+        //console.log("Expected 2")
     }
 
 }

@@ -85,3 +85,10 @@ old package.json
     "typescript": "^5.9.3"
   }
 }
+demo coursehttps://github.com/BakkappaN/PlaywrightTypeScriptTutorialFullCourse
+
+To run all the feature files then in the cucumberjs file add the below paths
+
+"paths": [
+      "src/test/features/OrangeHRMFeatures/**/*.feature"
+    ],

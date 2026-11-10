@@ -89,6 +89,7 @@ export class commonFunction{
 
     async selectOptionFromDrp(locator:Locator, value:string)
     {
+        let options=[];
         const data = await locator.all();
        for(let op of data)
        {
@@ -100,10 +101,16 @@ export class commonFunction{
         {
             console.log("No Records Found");
             break; 
-        }else{
-            console.log((await op.innerText()));
+        }else if(await op.innerText()!=value){
+            options.push(await op.innerText())
         }
        }
+
+       if(options.length>=1)
+       {
+        console.log('The available options are:', options);
+       }
+       
     };
 
     async waitForElement(locator:Locator)

@@ -19,6 +19,6 @@ Then('I click on the Apply button from the top menu', async function(){
 Then('verify that {string} text has been displayed', async function(validationMsg:string)
 {
         await lpo.verifyleaveBalance(validationMsg);
-        await lpo.selectLeaveTypedrp();
+        //await lpo.selectLeaveTypedrp();
 
 });

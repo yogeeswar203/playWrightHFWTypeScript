@@ -11,10 +11,18 @@ Feature: Verify the search functionality in the Leave page of OrangeHRM
     Background: 
         When Enter Username as "Admin" and Password as "admin123" and Click on login button
 
-
-Scenario: Validate the Entitlements by adding new one
+Scenario: Validate the error message 
     When I click on the "Leave" from the left panel
-    And user enters the from date as "2026-10-10" to date as "2026-11-10" 
+    And select the from date and To Date is later 
+    And User is able the see the validation message "To date should be after from date"
+
+Scenario: Validate the leave search functionality
+    When I click on the "Leave" from the left panel
+    #And user enters the from date as "2026-10-10" to date as "2026-11-10"
+    And select the from date and To Date
+    And I click on the Search button
+
+
     
 
 

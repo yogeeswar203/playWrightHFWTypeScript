@@ -27,4 +27,5 @@ Then('I click on the Search button',async function(){
 
 Then('I should see the search results for the specified employee', async function(){
     await directory_Steps.validateSearchResults();
-})
+});
+

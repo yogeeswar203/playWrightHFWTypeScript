@@ -27,8 +27,22 @@ export class leavePo{
     private readonly cancel_btn;
     private readonly confirm_btn;
     private readonly fromDate_loc;
-    private readonly toDate_loc
+    private readonly toDate_loc;
 
+
+    // Date locators
+    private readonly fromDate_ip;
+    private readonly toDate_ip;
+    private readonly leftArrow;
+    private readonly rightArrow;
+    private readonly month_ip;
+    private readonly monthAll_drp;
+    private readonly year_ip;
+    private readonly yearAll_drp;
+    private readonly dates_all;
+    private readonly searchResult_loc;
+
+    private readonly dateValidationMsg;
 
 
     // Add user in admin page
@@ -56,6 +70,38 @@ export class leavePo{
         this.confirm_btn = pf.page.locator("button[type='button']").filter({hasText:'Confirm'});
         this.fromDate_loc = pf.page.locator('.oxd-date-input>input').first();
         this.toDate_loc = pf.page.locator('toDate_loc')
+        this.searchResult_loc = pf.page.locator(".oxd-text--span").filter({hasText:'Found'});
+
+        // date locators
+        this.fromDate_ip = this.page.locator('.oxd-input-group')
+        // 2. Filter to find the specific group containing the "From Date" label
+                            .filter({ has: this.page.locator('label', { hasText: 'From Date' }) })
+        // 3. Locate the actual input field inside that group
+                            .locator('input');
+
+        this.toDate_ip = pf.page.locator('.oxd-input-group')
+                            .filter({has:pf.page.locator('label',{hasText:'To Date'})})
+                            .locator('input');
+
+                        
+
+        this.leftArrow = pf.page.locator('.oxd-calendar-header>button>.bi-chevron-left');
+        this.rightArrow = pf.page.locator('.oxd-calendar-header>button>.bi-chevron-right');
+        
+        this.monthAll_drp = pf.page.locator('.oxd-calendar-selector-month>ul>li');
+        this.month_ip = pf.page.locator('.oxd-calendar-selector-month');
+
+        this.year_ip = pf.page.locator('.oxd-calendar-selector-year');
+        this.yearAll_drp = pf.page.locator('.oxd-calendar-selector-year>ul>li');
+
+        this.dates_all = pf.page.locator('.oxd-calendar-dates-grid>div');
+
+        this.dateValidationMsg = pf.page.locator('.oxd-input-group')
+                            .filter({has:pf.page.locator('label',{hasText:'To Date'})})
+                            .locator('span');
+
+
+
 
 
     };
@@ -200,10 +246,66 @@ export class leavePo{
 
         await this.cuf.user_click(this.save_btn);
 
+    }
 
+    
+    async leavePageDateSelector(value:string){
+        const DateData = await this.cuf.readDataFromJson(JsonPath,value);
+        await this.cuf.user_click(this.fromDate_ip);
+        //await pf.page.waitForTimeout(2000);
+        await this.cuf.user_click(this.month_ip);
+        //await pf.page.waitForTimeout(2000);
+        const months_data = await this.cuf.getTextFromAllElements(this.monthAll_drp);
+        console.log(months_data);
+
+        await this.cuf.selectOptionFromDrp(this.monthAll_drp,DateData.fromMonth);
+        //await pf.page.waitForTimeout(2000);
+
+        await this.cuf.user_click(this.year_ip);
+        await pf.page.waitForTimeout(2000);
+        await this.cuf.selectOptionFromDrp(this.yearAll_drp,DateData.fromYear);
         
+        //await pf.page.waitForTimeout(2000);
+        await this.cuf.selectOptionFromDrp(this.dates_all,DateData.fromDate)
+
+        // Selecting to date value
+        await this.cuf.user_click(this.toDate_ip);
+        await this.cuf.selectOptionFromDrp(this.monthAll_drp,DateData.toMonth);
+        await pf.page.waitForTimeout(2000);
+
+        await this.cuf.user_click(this.year_ip);
+        //await pf.page.waitForTimeout(2000);
+        await this.cuf.selectOptionFromDrp(this.yearAll_drp,DateData.toyear);
+        
+        //await pf.page.waitForTimeout(2000);
+        await this.cuf.selectOptionFromDrp(this.dates_all,DateData.toDate)
+        //await pf.page.waitForTimeout(2000);
+
+    };
+
+    async clickOnSearch(){
+        await this.cuf.user_click(this.save_btn);
+        await pf.page.waitForTimeout(2000);
+        await pf.page.locator('.loading-spinner').waitFor({ state: 'detached' }); 
+    };
+
+    async validateResults(){
+        let rawRecords = await this.cuf.getText(this.searchResult_loc);
+        //console.log("The total records are:",rawRecords);
+        const no_records = parseInt(rawRecords.match(/\d+/)?.[0]||'0',10);
+        console.log("The total no of records are present: ",no_records);
+    
+    };
+
+    async dateValidation(actValidationMsg:string){
+        const validationMsg = await this.cuf.getText(this.dateValidationMsg);
+        console.log("The Validation message is:",validationMsg);
+        expect(validationMsg).toBe(actValidationMsg);
 
     }
+
+
+    
 
 
    

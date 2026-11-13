@@ -29,5 +29,23 @@
         "username":"CAN - Vacation"
     
 
+    },
+    "FromAndToDates":
+    {
+        "fromYear":"2025",
+        "fromMonth":"May",
+        "fromDate":"16",
+        "toyear":"2026",
+        "toMonth":"June",
+        "toDate":"9"
+    },
+    "DateValidations":
+    {
+        "fromYear":"2025",
+        "fromMonth":"May",
+        "fromDate":"16",
+        "toyear":"2023",
+        "toMonth":"June",
+        "toDate":"9"
     }
 }

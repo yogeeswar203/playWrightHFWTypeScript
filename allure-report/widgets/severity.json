@@ -1,1 +1,1 @@
-[{"uid":"c4541d0ba33b1b84","name":"Validate the Entitlements by adding new one","time":{"start":1794331463050,"stop":1794331493381,"duration":30331},"status":"passed","severity":"normal"}]
+[{"uid":"377373b7c74d27d8","name":"Validate the error message","time":{"start":1794585470270,"stop":1794585505252,"duration":34982},"status":"passed","severity":"normal"},{"uid":"8c633aa76d041783","name":"Validate the leave search functionality","time":{"start":1794585505287,"stop":1794585536824,"duration":31537},"status":"passed","severity":"normal"}]

@@ -1,2 +1,3 @@
 "DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
-"","30331","Validate the Entitlements by adding new one","","2026-11-10","passed","2026-11-10","","","",""
+"","31537","Validate the leave search functionality","","2026-11-13","passed","2026-11-13","","","",""
+"","34982","Validate the error message","","2026-11-13","passed","2026-11-13","","","",""
